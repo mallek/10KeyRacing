@@ -1,9 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
+Microsoft Visual Studio Solution File, Format Version 14.00
+# Visual Studio 15
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10KeyRaceing", "10KeyRaceing\10KeyRaceing.csproj", "{B387F671-B8CC-4003-89A6-6123F7FD5A17}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10KeyRacing", "10KeyRacing\10KeyRacing.csproj", "{B387F671-B8CC-4003-89A6-6123F7FD5A17}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
