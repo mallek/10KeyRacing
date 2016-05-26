@@ -90,7 +90,7 @@ namespace _10KeyRacing
 
             foreach (Player player in Players)
             {
-                Console.WriteLine($"Player{player.PlayerId} Score: {player.Score}  Time: {player.TotalTime}");
+                Console.WriteLine($"Player{player.PlayerId} Score: {player.Score}/{RaceLength} Accuracy: {(player.Score / (float)RaceLength) * 100}% Time: {player.TotalTime}");
             }
 
             Console.WriteLine("Press any key to quit...");
