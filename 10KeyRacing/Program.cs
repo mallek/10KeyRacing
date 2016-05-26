@@ -54,13 +54,11 @@ namespace _10KeyRacing
                 Console.Clear();
                 Console.WriteLine($"Player {player.PlayerId} press any key when ready...");
                 Console.ReadKey();
-                Console.WriteLine($"3");
+                Console.WriteLine($"Ready...");
                 Thread.Sleep(500);
-                Console.WriteLine($"2");
+                Console.WriteLine($"Set....");
                 Thread.Sleep(500);
-                Console.WriteLine($"1");
-                Thread.Sleep(500);
-                Console.WriteLine($"GO");
+                Console.WriteLine($"GO!");
                 Thread.Sleep(500);
 
                 for (int q = 0; q < RaceLength; q++)
