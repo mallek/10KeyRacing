@@ -7,14 +7,6 @@ namespace _10KeyRacing
 {
     class Program
     {
-
-        class Player
-        {
-            public int PlayerId { get; set; }
-            public int Score { get; set; }
-            public TimeSpan TotalTime { get; set; }
-        }
-
         static void Main(string[] args)
         {
             var Players = new List<Player>();
@@ -23,13 +15,7 @@ namespace _10KeyRacing
 
             Random rand = new Random();
 
-            Console.WriteLine($" _  ___    _  __            ____                      _   _____         _   ");
-            Console.WriteLine($"/ |/ _ \\  | |/ /___ _   _  / ___| _ __   ___  ___  __| | |_   _|__  ___| |_ ");
-            Console.WriteLine($"| | | | | | ' // _ \\ | | | \\___ \\| '_ \\ / _ \\/ _ \\/ _` |   | |/ _ \\/ __| __|");
-            Console.WriteLine($"| | |_| | | . \\  __/ |_| |  ___) | |_) |  __/  __/ (_| |   | |  __/\\__ \\ |_ ");
-            Console.WriteLine($"|_|\\___/  |_|\\_\\___|\\__, | |____/| .__/ \\___|\\___|\\__,_|   |_|\\___||___/\\__|");
-            Console.WriteLine($"                    |___/        |_|                                        ");
-            Console.WriteLine();
+            WriteBanner();
 
             while (PlayerCount <= 0)
             {
@@ -79,13 +65,7 @@ namespace _10KeyRacing
             }
 
             Console.Clear();
-            Console.WriteLine($" _  ___    _  __            ____                      _   _____         _   ");
-            Console.WriteLine($"/ |/ _ \\  | |/ /___ _   _  / ___| _ __   ___  ___  __| | |_   _|__  ___| |_ ");
-            Console.WriteLine($"| | | | | | ' // _ \\ | | | \\___ \\| '_ \\ / _ \\/ _ \\/ _` |   | |/ _ \\/ __| __|");
-            Console.WriteLine($"| | |_| | | . \\  __/ |_| |  ___) | |_) |  __/  __/ (_| |   | |  __/\\__ \\ |_ ");
-            Console.WriteLine($"|_|\\___/  |_|\\_\\___|\\__, | |____/| .__/ \\___|\\___|\\__,_|   |_|\\___||___/\\__|");
-            Console.WriteLine($"                    |___/        |_|                                        ");
-            Console.WriteLine();
+            WriteBanner();
 
 
             foreach (Player player in Players)
@@ -95,6 +75,24 @@ namespace _10KeyRacing
 
             Console.WriteLine("Press any key to quit...");
             Console.ReadKey();
+        }
+
+        internal class Player
+        {
+            public int PlayerId { get; set; }
+            public int Score { get; set; }
+            public TimeSpan TotalTime { get; set; }
+        }
+
+        private static void WriteBanner()
+        {
+            Console.WriteLine($" _  ___    _  __            ____                      _   _____         _   ");
+            Console.WriteLine($"/ |/ _ \\  | |/ /___ _   _  / ___| _ __   ___  ___  __| | |_   _|__  ___| |_ ");
+            Console.WriteLine($"| | | | | | ' // _ \\ | | | \\___ \\| '_ \\ / _ \\/ _ \\/ _` |   | |/ _ \\/ __| __|");
+            Console.WriteLine($"| | |_| | | . \\  __/ |_| |  ___) | |_) |  __/  __/ (_| |   | |  __/\\__ \\ |_ ");
+            Console.WriteLine($"|_|\\___/  |_|\\_\\___|\\__, | |____/| .__/ \\___|\\___|\\__,_|   |_|\\___||___/\\__|");
+            Console.WriteLine($"                    |___/        |_|                                        ");
+            Console.WriteLine();
         }
     }
 }
