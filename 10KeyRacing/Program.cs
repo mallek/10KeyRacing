@@ -52,15 +52,15 @@ namespace _10KeyRacing
 
                     var sw = Stopwatch.StartNew();
                     var thisQuestion = rand.Next();
+                    player.TotalKeys += thisQuestion.ToString().Length;
                     Console.WriteLine(thisQuestion);
-                    int answer;
-                    int.TryParse(Console.ReadLine(), out answer);
+                    int.TryParse(Console.ReadLine(), out var answer);
                     sw.Stop();
-                    player.TotalTime += sw.Elapsed;
                     if (answer == thisQuestion)
                     {
                         player.Score += 1;
                     }
+                    player.TotalTime += sw.Elapsed;
                 }
             }
 
@@ -70,19 +70,50 @@ namespace _10KeyRacing
 
             foreach (Player player in Players)
             {
-                Console.WriteLine($"Player{player.PlayerId} Score: {player.Score}/{RaceLength} Accuracy: {(player.Score / (float)RaceLength) * 100}% Time: {player.TotalTime}");
+                WriteScoreCard(player, RaceLength, Players.IndexOf(player) + 1);
+                //Console.WriteLine($"Player{player.PlayerId} Score: {player.Score}/{RaceLength} Accuracy: {(player.Score / (float)RaceLength) * 100}% kph:{player.KeysPerHour:N0} Time: {player.TotalTime}");
             }
 
             Console.WriteLine("Press any key to quit...");
             Console.ReadKey();
         }
 
+
         internal class Player
         {
             public int PlayerId { get; set; }
             public int Score { get; set; }
             public TimeSpan TotalTime { get; set; }
+            public int TotalKeys { get; set; }
+
+            public long KeysPerHour
+            {
+                get
+                {
+                    var ticksPerHour = TimeSpan.FromHours(1).Ticks;
+                    var keysPerHour = ticksPerHour / this.TotalTime.Ticks * this.TotalKeys;
+                    return keysPerHour;
+                }
+            }
+
+            public string CalculateScore(long raceLength)
+            {
+                return $" {(this.Score / raceLength):P1}";
+            }
+
         }
+
+        private static void WriteScoreCard(Player player, int raceLength, int index)
+        {
+            Console.WriteLine($"|==================================================================================================|");
+            Console.WriteLine($"|                                   Player {index.ToString().PadLeft(2)}                                                      |");
+            Console.WriteLine($"|Player Score: {player.CalculateScore(raceLength).PadLeft(12)}                                                                        |");
+            Console.WriteLine($"|Accuracy: {(player.Score / raceLength).ToString("P1").PadLeft(16)}                                                                        |");
+            Console.WriteLine($"|KPH: {player.KeysPerHour.ToString("N0").PadLeft(21)}                                                                        |");
+            Console.WriteLine($"|Time: {player.TotalTime.ToString().PadLeft(20)}                                                                        |");
+            Console.WriteLine($"|==================================================================================================|");
+        }
+
 
         private static void WriteBanner()
         {
