@@ -9,33 +9,33 @@ namespace _10KeyRacing
     {
         static void Main(string[] args)
         {
-            var Players = new List<Player>();
-            int PlayerCount = 0;
-            int RaceLength = 0;
+            var players = new List<Player>();
+            int playerCount = 0;
+            int raceLength = 0;
 
             Random rand = new Random();
 
             WriteBanner();
 
-            while (PlayerCount <= 0)
+            while (playerCount <= 0)
             {
                 Console.Write("How Many Players? ");
-                int.TryParse(Console.ReadLine(), out PlayerCount);
+                int.TryParse(Console.ReadLine(), out playerCount);
             }
 
-            for (int i = 0; i < PlayerCount; i++)
+            for (int i = 0; i < playerCount; i++)
             {
-                Players.Add(new Player() { PlayerId = i + 1, Score = 0 });
+                players.Add(new Player() { PlayerId = i + 1, Score = 0 });
             }
 
 
-            while (RaceLength <= 0)
+            while (raceLength <= 0)
             {
                 Console.Write("How Many Questions? ");
-                int.TryParse(Console.ReadLine(), out RaceLength);
+                int.TryParse(Console.ReadLine(), out raceLength);
             }
 
-            foreach (Player player in Players)
+            foreach (Player player in players)
             {
                 Console.Clear();
                 Console.WriteLine($"Player {player.PlayerId} press any key when ready...");
@@ -47,7 +47,7 @@ namespace _10KeyRacing
                 Console.WriteLine($"GO!");
                 Thread.Sleep(500);
 
-                for (int q = 0; q < RaceLength; q++)
+                for (int q = 0; q < raceLength; q++)
                 {
 
                     var sw = Stopwatch.StartNew();
@@ -68,9 +68,9 @@ namespace _10KeyRacing
             WriteBanner();
 
 
-            foreach (Player player in Players)
+            foreach (Player player in players)
             {
-                WriteScoreCard(player, RaceLength, Players.IndexOf(player) + 1);
+                WriteScoreCard(player, raceLength, players.IndexOf(player) + 1);
                 //Console.WriteLine($"Player{player.PlayerId} Score: {player.Score}/{RaceLength} Accuracy: {(player.Score / (float)RaceLength) * 100}% kph:{player.KeysPerHour:N0} Time: {player.TotalTime}");
             }
 
@@ -98,7 +98,7 @@ namespace _10KeyRacing
 
             public string CalculateScore(long raceLength)
             {
-                return $" {(this.Score / raceLength):P1}";
+                return $" {(this.Score / (float)raceLength):P1}";
             }
 
         }
@@ -108,7 +108,7 @@ namespace _10KeyRacing
             Console.WriteLine($"|==================================================================================================|");
             Console.WriteLine($"|                                   Player {index.ToString().PadLeft(2)}                                                      |");
             Console.WriteLine($"|Player Score: {player.CalculateScore(raceLength).PadLeft(12)}                                                                        |");
-            Console.WriteLine($"|Accuracy: {(player.Score / raceLength).ToString("P1").PadLeft(16)}                                                                        |");
+            Console.WriteLine($"|Accuracy: {(player.Score / (float)raceLength).ToString("P1").PadLeft(16)}                                                                        |");
             Console.WriteLine($"|KPH: {player.KeysPerHour.ToString("N0").PadLeft(21)}                                                                        |");
             Console.WriteLine($"|Time: {player.TotalTime.ToString().PadLeft(20)}                                                                        |");
             Console.WriteLine($"|==================================================================================================|");
